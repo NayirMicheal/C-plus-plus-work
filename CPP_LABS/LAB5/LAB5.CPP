@@ -1,0 +1,189 @@
+#include<iostream.h>
+#include<stdio.h>
+#include<conio.h>
+class point
+{
+int x,y;
+public:
+point ()
+{
+x=y=0;
+}
+point(int a,int b)
+{
+	x=a;
+	y=b;
+}
+point(point& p)
+{
+	x=p.x;
+	y=p.y;
+}
+point (int a)
+{
+	x=y=a;
+}
+~point ()
+{
+cout<<"destructor"<<endl;
+}
+point operator =(point & p)
+{
+	x=p.x;
+	y=p.y;
+	return *this;
+}
+void setX(int a)
+{
+x=a;
+}
+void setY(int b)
+{
+y=b;
+}
+void setAll(int a,int b)
+{
+	x=a;
+	y=b;
+}
+int getX()
+{
+	return x;
+}
+int getY()
+{
+	return y;
+}
+void print()
+{
+	cout<<" is: "<<"x="<<x<<" "<<"y="<<y<<endl;
+}
+};
+class CIRCLE
+{
+	point center;
+	int radius;
+	public:
+	CIRCLE():center(50,50),radius(10)
+	{
+		cout<<"def cons CIRCLE"<<endl;
+	}
+	CIRCLE(int x,int y,int r):center(x,y)
+	{
+		radius=r;
+		cout<<"cons CIRCLE x,y,r"<<endl;
+	}
+	CIRCLE(point p,int r):center(p)
+	{
+		cout<<"cons CIRCLE p,r"<<endl;
+		radius=r;
+	}
+	CIRCLE(int a,int r):center(a),radius(r)
+	{
+		cout<<"cons CIRCLE a,r"<<endl;
+	}
+	~CIRCLE()
+	{
+		cout<<"CIRCLE destructor"<<endl;
+	}
+	void setCenter(point p)
+	{
+		center.setX(p.getX());
+		center.setY(p.getY());
+	}
+	void setCenter(int a,int b)
+	{
+		center.setX(a);
+		center.setY(b);
+	}
+	void setRadius(int r)
+	{
+		radius=r;
+	}
+	int getRadius()
+	{
+		return radius;
+	}
+	point getcenter()
+	{
+		return center;
+	}
+	void printCIRCLE()
+	{
+		cout<<"Center";
+		center.print();
+		cout<<"Radius="<<radius<<endl;
+	}
+};
+class Rect
+{
+	point ul,lr;
+	public:
+	Rect():ul(5,5),lr(10,10)
+	{
+		cout<<"def cons Rect"<<endl;
+	}
+	Rect(point a,point b):ul(a),lr(b)
+	{
+		cout<<"cons Rect point a,b"<<endl;
+	}
+	Rect(int x1,int y1,int x2,int y2):ul(x1,y1),lr(x2,y2)
+	{
+		cout<<"cons Rect x1,y1,x2,y2"<<endl;
+	}
+	~Rect()
+	{
+		cout<<"Rect destructor"<<endl;
+	}
+	void setUL(point p)
+	{
+		ul.setX(p.getX());
+		ul.setY(p.getY());
+	}
+	void setUL(int a,int b)
+	{
+		ul.setX(a);
+		ul.setY(b);
+	}
+	void setLR(point p)
+	{
+		lr.setX(p.getX());
+		lr.setY(p.getY());
+	}
+	void setLR(int a,int b)
+	{
+		lr.setX(a);
+		lr.setY(b);
+	}
+	point getUL()
+	{
+		return ul;
+	}
+	point getLR()
+	{
+		return lr;
+	}
+	void printRect()
+	{
+		cout<<"Upper left";
+		ul.print();
+		cout<<"Lower right";
+		lr.print();
+	}
+};
+int main()
+{
+	clrscr();
+	CIRCLE c1,c2(point(9,6),5),c3(53,44,22),c4(5,6);
+	Rect r1,r2(point (6,6),point(7,8)),r3(5,8,9,3);
+	r1.printRect();
+	r2.printRect();
+	r3.printRect();
+	cout<<"---------------------------------------------------"<<endl;
+	c1.printCIRCLE();
+	c2.printCIRCLE();
+	c3.printCIRCLE();
+	c4.printCIRCLE();
+	getch();
+	return 0;
+}

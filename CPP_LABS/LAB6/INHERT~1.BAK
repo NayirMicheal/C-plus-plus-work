@@ -1,0 +1,83 @@
+#include<iostream.h>
+#include<stdio.h>
+#include<conio.h>
+class Base
+{
+	int a,b;
+	public:
+	Base()
+	{
+		a=b=0;
+	}
+	Base(int x)
+	{
+		a=b=x;
+	}
+	Base(int x,int y)
+	{
+		a=x;
+		b=y;
+	}
+	~Base()
+	{
+		cout<<"parent destructor"<<endl;
+	}
+	void setA(int x)
+	{
+		a=x;
+	}
+	void setB(int y)
+	{
+		b=y;
+	}
+	int getA()
+	{
+		return a;
+	}
+	int getB()
+	{
+		return b;
+	}
+	int calcusum()
+	{
+		return a+b;
+	}
+};
+class derived:public Base
+{
+	int c;
+	public:
+	derived(int x,int y,int z):Base(x,y)
+	{
+		//a=x;
+		//y=b;
+		z=c;
+	}
+	derived(int x):Base(x,x)
+	{
+		z=x;
+	}
+	void setC(int z)
+	{
+		c=z;
+	}
+	int getC()
+	{
+		return c;
+	}
+	int calcusum()
+	{
+		//return a+b+c;
+		return Base::calcusum()+c;
+	}
+};
+int main()
+{
+	clrscr();
+	Base b1(10),b2(5,91);
+	cout<<b1.calcusum()<<"-------"<<b2.calcusum()<<endl;
+	derived d1(5),d2(7,8,8);
+	cout<<d1.calcusum()<<"********"<<d2.calcusum<<endl;
+	getch();
+	return 0;
+}
